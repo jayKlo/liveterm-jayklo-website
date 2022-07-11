@@ -3,6 +3,15 @@
 import * as bin from './index';
 import config from '../../../config.json';
 
+function delayResponse(milliseconds: number){
+    const timeInitial : Date = new Date();
+    var timeNow : Date = new Date();
+    for ( ; timeNow - timeInitial < milliseconds; ){
+        timeNow = new Date();
+    }
+    console.log('Sleep done!');
+}
+
 // Help
 export const help = async (args: string[]): Promise<string> => {
   const commands = Object.keys(bin).sort().join(', ');
@@ -72,8 +81,8 @@ export const linkedin = async (args: string[]): Promise<string> => {
 
 // Search
 export const google = async (args: string[]): Promise<string> => {
-  window.open(`https://google.com/search?q=${args.join(' ')}`);
-  return `Searching google for ${args.join(' ')}...`;
+    window.open(`https://google.com/search?q=${args.join(' ')}`);
+    return `Searching google for ${args.join(' ')}...`;
 };
 
 export const duckduckgo = async (args: string[]): Promise<string> => {
@@ -133,6 +142,10 @@ export const emacs = async (args?: string[]): Promise<string> => {
   return `you know what? just use vscode.`;
 };
 
+export const nano = async (args?: string[]): Promise<string> => {
+  return `...just no.`;
+};
+
 export const sudo = async (args?: string[]): Promise<string> => {
   window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank'); // ...I'm sorry
   return `Permission denied: with little power comes... no responsibility? `;
@@ -150,6 +163,5 @@ export const banner = (args?: string[]): string => {
                                                   
 Type 'help' to see the list of available commands.
 Type 'sumfetch' to display summary.
-Type 'repo' or click <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.repo}" target="_blank">here</a></u> for the Github repository.
 `;
 };
