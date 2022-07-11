@@ -3,15 +3,6 @@
 import * as bin from './index';
 import config from '../../../config.json';
 
-function delayResponse(milliseconds: number){
-    const timeInitial : Date = new Date();
-    var timeNow : Date = new Date();
-    for ( ; timeNow - timeInitial < milliseconds; ){
-        timeNow = new Date();
-    }
-    console.log('Sleep done!');
-}
-
 // Help
 export const help = async (args: string[]): Promise<string> => {
   const commands = Object.keys(bin).sort().join(', ');
