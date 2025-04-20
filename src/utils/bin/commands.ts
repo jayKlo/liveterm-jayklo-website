@@ -45,10 +45,13 @@ export const resume = async (args: string[]): Promise<string> => {
 
 // Donate
 export const donate = async (args: string[]): Promise<string> => {
-  return `thank you for your interest. 
-here are the ways you can support my work:
-- <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.donate_urls.paypal}" target="_blank">paypal</a></u>
-- <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.donate_urls.patreon}" target="_blank">patreon</a></u>
+  return `Thanks for considering a donation! Here are your options:
+
+[1] <u><a href="https://neal.fun/spend/" target="_blank">Spend Bill Gates' Money</a></u> 💰
+[2] <u><a href="https://3pic.github.io/money" target="_blank">Spend Elon's Fortune</a></u> 🚀
+[3] <u><a href="https://joshworth.com/dev/wealthgap/" target="_blank">US Wealth Distribution</a></u> 📊
+
+(Spoiler: You probably need more directories than I can afford 😅)
 `;
 };
 
@@ -101,11 +104,19 @@ export const whoami = async (args: string[]): Promise<string> => {
 };
 
 export const ls = async (args: string[]): Promise<string> => {
-  return `a
-bunch
-of
-fake
-directories`;
+  return `
+drwxr-xr-x  2 ${config.ps1_username}  staff  📁 home/
+drwxr-xr-x  2 ${config.ps1_username}  staff  📁 projects/
+drwxr-xr-x  2 ${config.ps1_username}  staff  📁 blog/
+drwxr-xr-x  2 ${config.ps1_username}  staff  📁 contact/
+drwxr-xr-x  2 ${config.ps1_username}  staff  📁 skills/
+-rw-r--r--  1 ${config.ps1_username}  staff  📄 about.md
+-rw-r--r--  1 ${config.ps1_username}  staff  📄 resume.pdf
+-rw-r--r--  1 ${config.ps1_username}  staff  📄 README.md
+
+Type 'cd <directory>' to navigate
+Type 'cat <file>' to view file contents
+`;
 };
 
 export const cd = async (args: string[]): Promise<string> => {
