@@ -75,8 +75,8 @@ export const linkedin = async (args: string[]): Promise<string> => {
 
 // Search
 export const google = async (args: string[]): Promise<string> => {
-    window.open(`https://google.com/search?q=${args.join(' ')}`);
-    return `Searching google for ${args.join(' ')}...`;
+  window.open(`https://google.com/search?q=${args.join(' ')}`);
+  return `Searching google for ${args.join(' ')}...`;
 };
 
 export const duckduckgo = async (args: string[]): Promise<string> => {
