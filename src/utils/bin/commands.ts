@@ -163,6 +163,8 @@ export const banner = (args?: string[]): string => {
 ╚█████╔╝██║  ██║   ██║   ██║  ██╗███████╗╚██████╔╝
  ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ 
                                                   
+JayKlo.com • Updated September 22, 2026
+
 Type 'help' to see the list of available commands.
 Type 'sumfetch' to display summary.
 `;

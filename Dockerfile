@@ -1,54 +1,31 @@
-FROM node:20-alpine AS base
-
-# Add necessary build tools
+FROM node:24.21.0-alpine AS base
 RUN apk add --no-cache libc6-compat
-
 WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Copy package files
-COPY package.json yarn.lock ./
-RUN yarn install --network-timeout 100000
+# Install exactly the dependency tree checked into package-lock.json.
+COPY package.json package-lock.json .npmrc ./
+RUN npm ci
 
 FROM base AS builder
-WORKDIR /app
 COPY . .
+RUN npm run check
 
-# Set next telemetry disabled
-ENV NEXT_TELEMETRY_DISABLED 1
-
-# Build the application
-RUN yarn build
-
-FROM node:20-alpine AS runner
+FROM node:24.21.0-alpine AS runner
 WORKDIR /app
-
-# Set production environment
 ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 
-# Add necessary runtime packages
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat \
+    && addgroup --system --gid 1001 nodejs \
+    && adduser --system --uid 1001 nextjs
 
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy necessary files
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-
-# Set permissions
-RUN chown -R nextjs:nodejs /app
-
-# Switch to non-root user
 USER nextjs
-
-# Expose port and set host
 EXPOSE 3000
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
-
-# Start the application
 CMD ["node", "server.js"]

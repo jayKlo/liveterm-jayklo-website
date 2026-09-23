@@ -92,7 +92,7 @@ export const Input: React.FC<InputProps> = ({
 
   return (
     <div className="flex flex-row space-x-2">
-      <label htmlFor="prompt" className="flex-shrink">
+      <label htmlFor="prompt" className="shrink">
         <Ps1 />
       </label>
 
@@ -100,7 +100,7 @@ export const Input: React.FC<InputProps> = ({
         ref={inputRef}
         id="prompt"
         type="text"
-        className={`bg-light-background dark:bg-dark-background focus:outline-none flex-grow ${
+        className={`bg-light-background dark:bg-dark-background focus:outline-none grow ${
           commandExists(command) || command === ''
             ? 'text-dark-green'
             : 'text-dark-red'
