@@ -4,8 +4,10 @@ A terminal-style personal website built with Next.js Pages Router and React.
 
 ## Requirements
 
-- Node.js **24.21.0** (current LTS at the time of this update).
-- npm **11.19.0**, bundled with that Node release. npm 12 is also allowed.
+- Node.js **24.x**. Local development and Docker pin **24.21.0**; Vercel manages
+  the patch version and currently provides **24.19.0** for this project.
+- npm **11.17.0 or newer within majors 11–12**. Vercel currently provides 11.17.0;
+  Node 24.21.0 bundles 11.19.0. Both satisfy the project requirements.
 - Optional: Docker Desktop with its engine running, for container testing.
 
 The project uses npm exclusively. Commit `package-lock.json`; use `npm ci` to
@@ -112,6 +114,11 @@ On Vercel, confirm the project uses Node **24.x**, install command `npm ci`, and
 build command `npm run check`. `package.json` declares the runtime; the obsolete
 Node 18 environment hint has been removed. For Docker deployments, rebuild the
 image from this checkout rather than reusing an old image.
+
+If Vercel reports `EBADENGINE`, compare the log's actual Node/npm versions with
+`engines` in `package.json`. The npm minimum is 11.17.0 to support Vercel's bundled
+toolchain; keep `engine-strict=true` enabled. Set the Vercel dashboard's Node.js
+Version to 24.x as well to remove warnings about an older project setting.
 
 ## Dependency compatibility notes
 
