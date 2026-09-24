@@ -34,13 +34,10 @@ export const about = async (args: string[]): Promise<string> => {
 Welcome to my website!
 More about me:
 'sumfetch' - short summary.
-'resume' - my latest resume.
-'readme' - my github readme.`;
-};
-
-export const resume = async (args: string[]): Promise<string> => {
-  window.open(`${config.resume_url}`);
-  return 'Opening resume...';
+'projects' - my GitHub projects.
+'github' - my GitHub profile.
+'linkedin' - my LinkedIn profile.
+'email' - get in touch.`;
 };
 
 // Donate
@@ -111,11 +108,8 @@ drwxr-xr-x  2 ${config.ps1_username}  staff  📁 blog/
 drwxr-xr-x  2 ${config.ps1_username}  staff  📁 contact/
 drwxr-xr-x  2 ${config.ps1_username}  staff  📁 skills/
 -rw-r--r--  1 ${config.ps1_username}  staff  📄 about.md
--rw-r--r--  1 ${config.ps1_username}  staff  📄 resume.pdf
--rw-r--r--  1 ${config.ps1_username}  staff  📄 README.md
 
-Type 'cd <directory>' to navigate
-Type 'cat <file>' to view file contents
+These are virtual entries. Try 'about', 'projects', or 'email'.
 `;
 };
 

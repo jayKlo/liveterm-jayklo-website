@@ -1,21 +1,14 @@
 {
-  "readmeUrl": "https://raw.githubusercontent.com/cveinnt/cveinnt/master/README.md",
   "title": "JayKlo.com",
   "name": "Jay Karpan-Lowman",
-  "ascii": "liveterm",
   "social": {
-    "github": "github",
+    "github": "jayKlo",
     "linkedin": "jayklo"
   },
   "email": "jay@jayklo.com",
   "ps1_hostname": "jayKlo.com",
   "ps1_username": "fellow-human",
-  "repo": "https://github.com/Cveinnt/LiveTerm",
-  "resume_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Resume.pdf",
-  "donate_urls": {
-    "paypal": "https://paypal.me/cveinnt",
-    "patreon": "https://patreon.com/cveinnt"
-  },
+  "repo": "https://github.com/jayKlo/liveterm-jayklo-website",
   "colors": {
     "light": {
       "background": "#FDF6E3",

@@ -1,11 +1,11 @@
 {
-  "name": "liveterm",
+  "name": "jayklo-website",
   "version": "0.1.0",
   "license": "MIT",
   "author": {
-    "name": "Vincent Wu",
-    "url": "https://cveinnt.com",
-    "email": "contact@wensenwu.com"
+    "name": "Jay Karpan-Lowman",
+    "url": "https://jayklo.com",
+    "email": "jay@jayklo.com"
   },
   "engines": {
     "node": "24.x",
@@ -39,5 +39,6 @@
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3"
   },
-  "packageManager": "npm@11.17.0"
+  "packageManager": "npm@11.17.0",
+  "private": true
 }

@@ -50,7 +50,7 @@ Open <http://localhost:3000>. Check:
 - `clear` and Ctrl+L clear the terminal, and another command still works.
 - `projects`, `quote`, and `weather Denver` work when their external APIs are
   reachable. API outages and rate limits can affect these existing commands.
-- Existing GitHub, LinkedIn, and résumé links open the configured destinations.
+- GitHub, LinkedIn, email, and `repo` links open your configured destinations.
 - Check a narrow mobile viewport and the browser console for rendering errors.
 
 Stop the development server with Ctrl+C. Test the production build separately:
@@ -139,3 +139,21 @@ Unused React Icons, Husky (no project hooks were configured), and redundant lint
 and PostCSS packages were removed. These changes cover the dependency/runtime
 upgrade and repository/build hygiene; other findings from the security review,
 including raw HTML terminal output, require separate fixes.
+
+## Personal content
+
+`config.json` contains the site identity, contact links, GitHub username, repository,
+and colors. `projects` lists repositories for that GitHub account. The sample
+`resume` and upstream `readme` commands were removed until personal content is
+available. `sumfetch` shows personal contact links and the website source.
+
+The playful terminal commands remain, including the customized `donate` joke.
+Original demo images, unused fonts, and the unused theme catalog were removed.
+The old LiveTerm icon set was replaced with `public/icon.svg`, a terminal icon
+using the site colors.
+Docker service names and the GitHub repository URL retain `liveterm` for continuity.
+
+## Attribution
+
+This website is derived from [LiveTerm](https://github.com/Cveinnt/LiveTerm) by
+Vincent Wu. The original MIT copyright and license are preserved in `LICENSE`.

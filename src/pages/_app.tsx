@@ -12,6 +12,8 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="manifest" href="/manifest.json" />
         <meta
           name="viewport"
           content="initial-scale=1.0, width=device-width"
