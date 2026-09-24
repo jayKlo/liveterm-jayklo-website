@@ -1,8 +1,8 @@
 {
   "name": "JayKlo.com",
   "short_name": "JayKlo",
-  "theme_color": "#002B36",
-  "background_color": "#002B36",
+  "theme_color": "#081318",
+  "background_color": "#081318",
   "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",

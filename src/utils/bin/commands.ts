@@ -30,7 +30,7 @@ export const repo = async (args: string[]): Promise<string> => {
 
 // About
 export const about = async (args: string[]): Promise<string> => {
-  return `Hi, I am ${config.name}. 
+  return `Hi, I am ${config.name}.
 Welcome to my website!
 More about me:
 'sumfetch' - short summary.
@@ -149,17 +149,11 @@ export const sudo = async (args?: string[]): Promise<string> => {
 
 // Banner
 export const banner = (args?: string[]): string => {
-  return `
-     ██╗ █████╗ ██╗   ██╗██╗  ██╗██╗      ██████╗ 
+  return `<section class="welcome"><pre class="ascii-logo" aria-hidden="true">     ██╗ █████╗ ██╗   ██╗██╗  ██╗██╗      ██████╗
      ██║██╔══██╗╚██╗ ██╔╝██║ ██╔╝██║     ██╔═══██╗
      ██║███████║ ╚████╔╝ █████╔╝ ██║     ██║   ██║
 ██   ██║██╔══██║  ╚██╔╝  ██╔═██╗ ██║     ██║   ██║
 ╚█████╔╝██║  ██║   ██║   ██║  ██╗███████╗╚██████╔╝
- ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ 
-                                                  
-JayKlo.com • Updated September 22, 2026
-
-Type 'help' to see the list of available commands.
-Type 'sumfetch' to display summary.
-`;
+ ╚════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝
+</pre><h1>${config.name}</h1><p>Welcome to my corner of the internet.</p><p class="welcome-guide">Type <span class="command-name">help</span> to explore, or <span class="command-name">sumfetch</span> for a quick introduction.</p></section>`;
 };

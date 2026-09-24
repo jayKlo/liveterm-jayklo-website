@@ -1,6 +1,7 @@
 import React from 'react';
 import { History as HistoryInterface } from './interface';
 import { Ps1 } from '../Ps1';
+import { commandExists } from '../../utils/commandExists';
 
 export const History: React.FC<{ history: Array<HistoryInterface> }> = ({
   history,
@@ -8,18 +9,16 @@ export const History: React.FC<{ history: Array<HistoryInterface> }> = ({
   return (
     <>
       {history.map((entry: HistoryInterface, index: number) => (
-        <div key={entry.command + index}>
-          <div className="flex flex-row space-x-2">
-            <div className="shrink">
+        <div className="terminal-entry" key={entry.command + index}>
+          {entry.command && (
+            <div className="history-command">
               <Ps1 />
+              <span className="history-command-text">{entry.command}</span>
             </div>
+          )}
 
-            <div className="grow">{entry.command}</div>
-          </div>
-
-          <p
-            className="whitespace-pre-wrap mb-2"
-            style={{ lineHeight: 'normal' }}
+          <div
+            className={`terminal-output${entry.command.trim() && !commandExists(entry.command) ? ' terminal-error' : ''}`}
             dangerouslySetInnerHTML={{ __html: entry.output }}
           />
         </div>

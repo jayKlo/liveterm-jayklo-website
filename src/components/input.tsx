@@ -1,5 +1,4 @@
 import React, { RefObject, Dispatch, SetStateAction } from 'react';
-import { commandExists } from '../utils/commandExists';
 import { shell } from '../utils/shell';
 import { handleTabCompletion } from '../utils/tabCompletion';
 import { Ps1 } from './Ps1';
@@ -44,7 +43,7 @@ export const Input: React.FC<InputProps> = ({
       clearHistory();
     }
 
-    if (event.key === 'Tab') {
+    if (event.key === 'Tab' && !event.shiftKey && command.trim()) {
       event.preventDefault();
       handleTabCompletion(command, setCommand);
     }
@@ -91,25 +90,24 @@ export const Input: React.FC<InputProps> = ({
   };
 
   return (
-    <div className="flex flex-row space-x-2">
-      <label htmlFor="prompt" className="shrink">
-        <Ps1 />
+    <div className="terminal-input-row">
+      <label htmlFor="prompt">
+        <Ps1 active />
       </label>
 
       <input
         ref={inputRef}
         id="prompt"
         type="text"
-        className={`bg-light-background dark:bg-dark-background focus:outline-none grow ${
-          commandExists(command) || command === ''
-            ? 'text-dark-green'
-            : 'text-dark-red'
-        }`}
+        className="terminal-input"
+        aria-label="Terminal command"
+        placeholder="Type a command…"
         value={command}
         onChange={onChange}
-        autoFocus
         onKeyDown={onSubmit}
         autoComplete="off"
+        autoCapitalize="none"
+        autoCorrect="off"
         spellCheck="false"
       />
     </div>

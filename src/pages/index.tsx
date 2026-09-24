@@ -5,12 +5,15 @@ import { Input } from '../components/input';
 import { useHistory } from '../components/history/hook';
 import { History } from '../components/history/History';
 import { banner } from '../utils/bin';
+import { Theme } from '../utils/theme';
 
 interface IndexPageProps {
   inputRef: React.MutableRefObject<HTMLInputElement>;
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
 }
 
-const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
+const IndexPage: React.FC<IndexPageProps> = ({ inputRef, theme, setTheme }) => {
   const containerRef = React.useRef(null);
   const {
     history,
@@ -20,18 +23,14 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
     setHistory,
     clearHistory,
     setLastCommandIndex,
-  } = useHistory([]);
-
-  const init = React.useCallback(() => setHistory(banner()), []);
-
-  React.useEffect(() => {
-    init();
-  }, [init]);
+  } = useHistory([{ id: 0, date: new Date(0), command: '', output: banner() }]);
 
   React.useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.scrollIntoView();
-      inputRef.current.focus({ preventScroll: true });
+      inputRef.current.scrollIntoView({ block: 'nearest' });
+      if (window.matchMedia('(pointer: fine)').matches) {
+        inputRef.current.focus({ preventScroll: true });
+      }
     }
   }, [history]);
 
@@ -41,8 +40,29 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
         <title>{config.title}</title>
       </Head>
 
-      <div className="p-8 overflow-hidden h-full border-2 rounded border-light-yellow dark:border-dark-yellow">
-        <div ref={containerRef} className="overflow-y-auto h-full">
+      <section className="terminal" aria-label="JayKlo terminal">
+        <header className="terminal-header">
+          <div className="terminal-title">
+            <span className="terminal-mark" aria-hidden="true">
+              &gt;_
+            </span>
+            <span>{config.ps1_hostname}</span>
+            <span className="terminal-title-detail">/ terminal</span>
+          </div>
+          <label className="theme-control">
+            <span>Theme</span>
+            <select
+              aria-label="Theme"
+              value={theme}
+              onChange={(event) => setTheme(event.target.value as Theme)}
+            >
+              <option value="system">System</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </label>
+        </header>
+        <div ref={containerRef} className="terminal-body">
           <History history={history} />
 
           <Input
@@ -56,8 +76,19 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
             setLastCommandIndex={setLastCommandIndex}
             clearHistory={clearHistory}
           />
+          <footer className="terminal-hints" aria-label="Keyboard shortcuts">
+            <span>
+              <kbd>Tab</kbd> autocomplete
+            </span>
+            <span>
+              <kbd>↑ ↓</kbd> history
+            </span>
+            <span>
+              <kbd>Ctrl L</kbd> clear
+            </span>
+          </footer>
         </div>
-      </div>
+      </section>
     </>
   );
 };

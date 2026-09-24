@@ -1,18 +1,13 @@
 import React from 'react';
 import config from '../../config.json';
 
-export const Ps1 = () => {
+export const Ps1 = ({ active = false }: { active?: boolean }) => {
   return (
-    <div>
-      <span className="text-light-yellow dark:text-dark-yellow">
-        {config.ps1_username}
-      </span>
-      <span className="text-light-gray dark:text-dark-gray">@</span>
-      <span className="text-light-green dark:text-dark-green">
-        {config.ps1_hostname}
-      </span>
-      <span className="text-light-gray dark:text-dark-gray">:$ ~ </span>
-    </div>
+    <span className={`prompt${active ? ' prompt-active' : ''}`}>
+      {!active && <span className="prompt-user">{config.ps1_username}@</span>}
+      <span className="prompt-host">{config.ps1_hostname}</span>
+      <span> ~ $</span>
+    </span>
   );
 };
 

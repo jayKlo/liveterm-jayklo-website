@@ -44,9 +44,15 @@ npm run dev -- --hostname 127.0.0.1
 
 Open <http://localhost:3000>. Check:
 
-- The banner, border, prompt, font, and light/dark colors render correctly.
+- The banner, terminal frame, prompt, and font render correctly.
+- Switch Theme between System, Light, and Dark. Light/Dark should persist after
+  reloading; System should follow your device appearance.
 - `help`, `about`, `sumfetch`, `date`, and `echo hello` produce output.
 - Arrow Up/Down recall history; Tab completes a unique command prefix.
+- Shift+Tab leaves the command input; Tab with an empty input does not trap focus.
+- Incomplete commands stay neutral while typing; an unknown submitted command
+  shows an error. Selecting text and using the theme selector should not redirect
+  focus to the command input.
 - `clear` and Ctrl+L clear the terminal, and another command still works.
 - `projects`, `quote`, and `weather Denver` work when their external APIs are
   reachable. API outages and rate limits can affect these existing commands.
@@ -152,6 +158,11 @@ Original demo images, unused fonts, and the unused theme catalog were removed.
 The old LiveTerm icon set was replaced with `public/icon.svg`, a terminal icon
 using the site colors.
 Docker service names and the GitHub repository URL retain `liveterm` for continuity.
+
+The appearance uses semantic light/dark colors in `config.json`: background,
+surface, foreground, muted, border, accent, input, error, and shadow. The default
+theme follows the device; the selector saves an override in browser storage.
+Layout, typography, and responsive styles live in `src/styles/global.css`.
 
 ## Attribution
 
